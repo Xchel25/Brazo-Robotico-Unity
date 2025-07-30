@@ -1,0 +1,401 @@
+                 WELCOME TO TURBO ASSEMBLER 1.0
+                 ------------------------------
+
+This README file contains important, last minute information
+about Turbo Assembler 1.0. The HELPME!.DOC file on the TURBO
+ASSEMBLER/INSTALL/EXAMPLES disk also answers many common
+Technical Support questions.
+
+
+TABLE OF CONTENTS
+-----------------
+
+  1. How to Get Help
+  2. Installation
+  3. Important Notes
+  4. Manual Additions and Corrections
+  5. Files on the Disks
+
+
+1. HOW TO GET HELP
+------------------
+
+  If you have any problems, please read this file, the HELPME!.DOC
+  file, and the Turbo Assembler manuals first. If you still have a
+  question and need assistance, help is available from the following
+  sources:
+
+  1. Type GO BOR on the CompuServe bulletin board system for
+     instant access to the Borland forums with their libraries of
+     technical information and answers to common questions.
+
+     If you are not a member of CompuServe, see the enclosed special
+     offer, and write for full details on how to receive a free
+     IntroPak containing a $15 credit toward your first month's on-
+     line charges.
+
+  2. Check with your local software dealer or users' group.
+
+  3. Write to us at the following address:
+
+     Borland International
+     Turbo Assembler Technical Support
+     1800 Green Hills Road
+     P.O. Box 660001
+     Scotts Valley, CA  95066-0001
+
+     Please remember to include your serial number or we will be
+     unable to process your letter.
+
+  4. If you have an urgent problem that cannot wait and you have sent
+     in the license agreement from the front of your manual, you may
+     call the Borland Technical Support Department at (408) 438-5300.
+     Please have the following information ready before calling:
+
+     a. Product name and serial number on your original distribution
+        disk.  Please have your serial number ready or we will be
+        unable to process your call.
+
+     b. Product version number. The version number for Turbo Assembler
+        is displayed when you run the program.
+
+     c. Computer brand, model, and the brands and model numbers of any
+        additional hardware.
+
+     d. Operating system and version number. (The version number can
+        be determined by typing VER at the MSDOS prompt.)
+
+     e. Contents of your AUTOEXEC.BAT file.
+
+     f. Contents of your CONFIG.SYS file.
+
+
+2. INSTALLATION
+---------------
+
+  This disk contains a program called INSTALL.EXE that will
+  assist you with the installation of Turbo Assembler 1.0. There
+  are two options for installation:
+
+  1. Hard Disk - This option allows you to pick the subdirectories
+     where the files will be loaded.
+
+  2. Floppy Disk - This option will install the files necessary to
+     use Turbo Assembler on a two-drive system.  Be sure to have
+     four formatted disks ready before you start.
+
+  To start the installation, change your current drive to the one
+  that has the install program on it and type INSTALL.  You will
+  be given instructions in a box at the bottom of the screen for
+  each prompt. For example, if you will be installing from drive
+  A:, type
+
+    A:
+    INSTALL
+
+  You should read the rest of this README file to get further
+  information about this release before you do the installation.
+
+  The TURBO ASSEMBLER/INSTALL/EXAMPLES distribution disk contains
+  several files with an .ARC file extension:  MMACROS.ARC,
+  CHAPXMPL.ARC, TAEXMPL1.ARC, and TAEXMPL2.ARC. These files contain
+  several other files that have been compressed and placed inside
+  an archive.  You can dearchive them yourself by using the
+  UNPACK.COM utility.
+
+  For example,
+
+    UNPACK MMACROS
+
+  unpacks all the files stored in the MMACROS.ARC archive into the
+  current directory.
+
+  INSTALL gives you a choice of copying the .ARC files intact or
+  dearchiving and copying all of the individual files onto your
+  hard disk during the installation process.  (The CHAPXMPL.ARC
+  file is not automatically unpacked when Turbo Assembler is
+  installed to a hard disk.  See CHAPXMPL.ARC "Note" in the README
+  Section "Files on the Disks" for further information.) Note that
+  the Turbo Assembler Installation program ignores the .ARC file
+  named TDEXMPL.ARC, see the,see the Turbo Debugger README file
+  for a discription of this file.
+
+
+3. IMPORTANT NOTES
+------------------
+
+  o Additional tips and answers to many common questions will be found
+    in the text file HELPME!.DOC, which has been installed to the same
+    location as this file (README). You can use the README.COM utility
+    to view the HELPME!.DOC file by giving the following command:
+
+      README HELPME!.DOC
+
+  o If you will be running INSTALL on a laptop or any other system
+    that uses an LCD display, you should set your system into black
+    and white mode before running INSTALL. You can do this from DOS
+    with the following command line:
+
+      mode bw80
+
+    or, you can force INSTALL to come up in black and white mode by
+    using the /b switch:
+
+      install /b
+
+  o Changed Switches for OBJXREF:
+
+    The /O option (object files directory) has been changed to
+    the /D (directories) option. The switch now allows for
+    multiple search directories to be specified. The new syntax
+    follows:
+
+     OBJXREF /Ddir1[;dir2[;dir3]]
+
+       or
+
+     OBJXREF /Ddir1 [/Ddir2] [/Ddir3]
+
+    OBJXREF will search each of the directories in the specified
+    order for all object and library files. If no /D option is
+    used, only the current directory will be searched. However,
+    if a /D option is used, the current directory will NOT be
+    searched unless it is included in the directory list. For
+    example, to first search the BORLAND directory for files and
+    then search the current directory, you would type
+
+      OBJXREF /Dborland;.
+
+    If multiple search directories are specified and a file
+    matching the file specification is found, OBJXREF will
+    include the file as part of the cross-reference. OBJXREF will
+    only continue to search the other directories for the same
+    file specification if the file specification contains
+    wildcards.
+
+    A new option has been added to allow you to specify an output
+    file where OBJXREF will send any reports generated. The new
+    option is the /O option, and it has the following syntax:
+
+      OBJXREF myfile.obj /RU /Ofilename.ext
+
+    By default, all output is sent to the console.
+
+  o Turbo Linker (TLINK) Notes:
+
+    1) When linking with the /V option, TLINK will initialize all
+    segments. If you have a program that runs differently when
+    linked with debug information, you have an uninitialized
+    variable somewhere.
+
+    2) TLINK loads last any segments of class 'STACK' even if
+    they are part of DGROUP.
+
+
+5. MANUAL ADDITIONS AND CORRECTIONS
+-----------------------------------
+
+  Additions and corrections to the manual will be found in the text
+  file MANUAL.DOC, which has been installed to the same location as
+  this file (README). You can use the README.COM utility to view the
+  MANUAL.DOC file by giving the following command:
+
+    README MANUAL.DOC
+
+
+6. FILES ON THE DISKS
+---------------------
+
+  TURBO ASSEMBLER/INSTALL/EXAMPLES
+  --------------------------------
+  This diskette also contains files for use with the Turbo Debugger.
+  Please see the Turbo Debugger README and manuals for a complete
+  description of these files.
+
+  INSTALL  EXE  -  Installation program
+  README   COM  -  Reads this README
+  TASM     EXE  -  Turbo Assembler
+  TCREF    EXE  -  Turbo Assembler cross-reference utility
+  MAKE     EXE  -  Program for managing projects
+  TLINK    EXE  -  Borland Turbo Linker
+  TLIB     EXE  -  Borland Turbo Librarian
+  OBJXREF  COM  -  Object file cross-reference utility
+  GREP     COM  -  Turbo GREP program
+  TOUCH    COM  -  Program that updates a file's date and time
+  TDCONVRT EXE  -  Turbo Debugger utility
+  TDPACK   EXE  -  Turbo Debugger utility
+  TDNMI    COM  -  Turbo Debugger utility
+  UNPACK   COM  -  Program to unpack the .ARC files
+  TDEXMPL  ARC  -  Turbo Debugger packed examples
+
+  CHAPXMPL ARC  -  Examples Programs from the Manual
+
+     Note: This file is not automatically unpacked when Turbo Assembler
+           is installed to a hard disk. To unpack these files you will
+           first need to switch to the drive and subdirectory containing
+           this file and then give the command
+
+           unpack /r chapxmpl
+
+    HELLO.ASM    - Pg   9
+    HELLO2.ASM   - Pg  13
+    HELLOPRN.ASM - Pg  15
+    REVERSE.ASM  - Pg  16
+    ECHOCHAR.ASM - Pg  56
+    MODCHAR.ASM  - Pg  80
+    DELAY.ASM    - Pg  88
+    DSLYSTR.ASM  - Pg 109
+    USE_ES.ASM   - Pg 110
+    STDSEG.ASM   - Pg 115
+    STRINGS.ASM  - Pg 132
+    PRNTSTR.ASM  - Pg 175
+    CNTWORDS.ASM - Pg 181
+    MAIN.ASM     - Pg 208
+    SUB1.ASM     - Pg 208
+    PLUSONE.C    - Pg 285
+    PLUSONE.ASM  - Pg 285
+    SQRETBLE.C   - Pg 289
+    SQRTBLE2.C   - Pg 289
+    STRINGUP.C   - Pg 295
+    DOTOTAL.ASM  - Pg 308
+    SHOWTOT.C    - Pg 309
+    DOTOTAL2.ASM - Pg 309
+    TOGLFLAG.C   - Pg 316
+    TOGFLAG.ASM  - Pg 316
+    CALLCT.C     - Pg 330
+    COUNT.ASM    - Pg 330
+    COUNTLG.ASM  - Pg 332
+    CALCAVG.C    - Pg 337
+    AVERAGE.ASM  - Pg 337
+    SAMPLE.PAS   - Pg 347
+    ASMPROC.ASM  - Pg 347
+    TSAMPLE.PAS  - Pg 348
+    HEXTEST.PAS  - Pg 361
+    HEXSTR.ASM   - Pg 360
+    XCHANGE.PAS  - Pg 363
+    XCHANGE.ASM  - Pg 363
+    ENVTEST.PAS  - Pg 366
+    ENVSTR.ASM   - Pg 366
+    SCROLLH.PRO  - Pg 391
+    SCROL.ASM    - Pg 392
+    MYPROLOG.PRO - Pg 395
+    MYASM.ASM    - Pg 395
+    ADDPRO.PRO   - Pg 397
+    ADD.ASM      - Pg 397
+    SHOWMESS.PRO - Pg 399
+    FROM_ASM.ASM - Pg 400
+    SHOWNEW.PRO  - Pg 400
+    FROM_NEW.ASM - Pg 401
+    FUNC.PRO     - Pg 402
+    IFUNC.ASM    - Pg 402
+    MULT_C&D.ASM - Pg 475
+    PRIMES.ASM   - Pg 526
+    MASEXMPL.ASM - Pg 555
+    IDLEXMPL.ASM - Pg 557
+
+  MMACROS  ARC  -  MASM Mode Macros
+    BIOS.INC    -  Equates representing the BIOS services
+    DOS.INC     -  Equates representing the DOS services
+    KBD.INC     -  Equates representing the IBM PC keyboard keystrokes
+    MBIOS.MAC   -  Macros used to interface with the IBM PC BIOS. MASM Mode
+    MDOS.MAC    -  Macros to interface with DOS. MASM Mode
+    MMACROS.MAC -  General macros. MASM Mode
+
+  TAEXMPL1 ARC  -  Ideal mode example and macros
+    BIOS.INC     - Equates representing the BIOS services
+    BIOSMAC.DOC  - Documentation for macros implemented in ?BIOS.MAC
+    DEMO1.BAT    - Batch file to make Whereis.exe
+    DOS.INC      - Equates representing the DOS services
+    DOSMAC.DOC   - Documentation for macros implemented in ?DOS.MAC
+    IASCIIZS.ASM - Routine to display an ASCIIZ string
+    IBIOS.MAC    - Ideal mode macros used to interface with the IBM PC BIOS
+    IBYTECPY.ASM - Routine that copies an array of bytes from one
+                   location to another
+    IDELCHAR.ASM - Routine that deletes n characters from a
+                   Pascal-style string starting at position i
+    IDOS.INC     - Type declarations used to interface with DOS
+    IDOS.MAC     - Macros to interface with DOS. Ideal Mode
+    IFINDBYT.ASM - Routine that searches an array of bytes looking for a
+                   value; routine that returns the length of an ASCIIZ string.
+    IFINDFIL.ASM - Routine that does a recursive search of a hard disk
+                   looking for a file
+    IFINDREP.ASM - Routine that searches through an array of bytes,
+                   replacing all instances of a value with another value.
+    ILOCSTRG.ASM - Routine that searches through memory looking for
+                   the nth Pascal-style string
+    IMACROS.MAC  - General macros. Ideal Mode
+    IPARAM.ASM   - Routines to return the # of command-line parameters and
+                   the contents of an individual parameter
+    IPARSEFN.ASM - Routine that parses a file name into Drive,
+                   Path, and File spec
+    ISKPWHIT.ASM - Routine to advance a pointer past any whitespace in
+                   an array of bytes
+    IWHEREIS.ASM - Main module for Whereis program
+    IWHGLOBL.INC - Global declarations for Whereis
+    IWRITEPS.ASM - Routine to display a Pascal-style string
+    KBD.INC      - Equates representing the IBM PC keyboard keystrokes
+    WHEREIS.DOC  - Documentation for Whereis file locator program
+    WHEREIS.MAK  - Make file for creating Whereis.exe using the Make utility
+    WHUSAGE.INC  - Usage screen text
+
+  TAEXMPL2 ARC  -  Simplified (FILT) and standard segmentation (SHOW87)
+                   examples
+    CONVERT1.INC - Converts from binary numbers to strings
+    CONVERT2.INC - Converts from floating point to integer numbers
+    DEMO3.BAT    - Batch file to make Filt.exe text filter program
+    DEMO2.BAT    - Batch file to build Show87
+    FILT.ASM     - Text filter main file
+    FILT.DOC     - Documentation file for Filt.exe text filter program
+    FILT.MAK     - Make file for creating Filt.exe using the make utility
+    FILT.RSP     - Linker response file for linking Filt.exe
+    GLOBALS.INC  - Declares procedures and symbols needed by the modules
+                   of FILT
+    OBYTEHI.ASM  - Processes the current high byte value in AL
+    OBYTELOW.ASM - Processes the current low byte value in AL
+    OBYTENRM.ASM - Processes the current normal byte value in AL
+    OCMDNUM.ASM  - Parses the command line
+    OERREXIT.ASM - Handles the printing of error messages
+    OFCREATE.ASM - Creates or truncates a file; the file is opened
+                   for writing
+    OFILALOC.ASM - Allocates a read/write buffer
+    OFILCLOS.ASM - Closes a file
+    OFILEFIL.ASM - Fills a read buffer
+    OFILFREE.ASM - Deallocates a read/write buffer
+    OFILREAD.ASM - Reads from a file
+    OFILWRIT.ASM - Writes to a file
+    OFLFLUSH.ASM - Flushes the write buffer
+    OFOPENR.ASM  - Opens a file for reading
+    OFOPENW.ASM  - Opens a file for writing
+    OLOCASE.ASM  - Routine converts a letter to lowercase
+    OPARSCMD.ASM - Parses the command line
+    OPRCBYTE.ASM - Processes a byte
+    OPROCDOC.ASM - Processes an entire document, one line at a time
+    OPROCLIN.ASM - Processes a line
+    OSETOPTN.ASM - Sets input buffer size; sets output buffer
+                   size; sets the byte to end lines; clears all
+                   tab stops; sets a tab stop; truncates lines to
+                   a specified length; sets the left margin;
+                   deletes the left margin; displays a help
+                   message
+    OSPACES.ASM  - Stores a specified number of spaces at
+                   particular location
+    OSTORSPC.ASM - Stores any currently stored spaces
+    OSTORTAB.ASM - Stores a tab character if there are any spaces
+                   to compress
+    OTABCLR.ASM  - Clears all tab stops
+    OTABNEXT.ASM - Returns the number of spaces to the next tab stop
+    OTABRSET.ASM - Sets tap stops every eight columns
+    OTABSET.ASM  - Sets a tap stop at a specified column location
+    OUPCASE.ASM  - Routine converts a letter to uppercase
+    SHOW87.ASM   - Standard Segmentation Demo Program
+    SHOW87.DOC   - Documentation for Show87 8087 register display
+                   program
+    VIDEO1.INC   - Routines to display text and control the screen
+    VIDEO2.INC   - Routines to display formatted text strings
+
+  MANUAL   DOC  -  Last minute additions and corrections to the manual
+  HELPME!  DOC  -  Text file with the answers to many common questions.
+                   Please read HELPME!.DOC before contacting Technical
+                   Support.
+  README        -  This file
+
