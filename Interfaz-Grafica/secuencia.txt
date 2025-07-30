@@ -1,0 +1,20 @@
+repetir 2
+base 180.0 9
+cuerpo 90.0 9
+brazo -30.0 9
+codo 90.0 9
+garra 45.0 9
+pinza 1.0 9
+pinza 0.0 9
+garra 0.0 9
+codo 0.0 9
+brazo 0.0 9
+cuerpo 0.0 9
+base 0.0 9
+base 180.0 9
+cuerpo 90.0 9
+brazo -30.0 9
+codo 90.0 9
+garra 45.0 9
+pinza 1.0 9
+finrepetir

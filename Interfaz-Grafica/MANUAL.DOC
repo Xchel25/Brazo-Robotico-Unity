@@ -1,0 +1,537 @@
+TURBO ASSEMBLER 1.0: MANUAL ADDITIONS AND CORRECTIONS
+-----------------------------------------------------
+
+  General note: The casing of the predefined segment symbol names
+  (those beginning with the at-sign (@)) are incorrect in the
+  manuals. The entire name should be in lowercase. This case is
+  significant when you assemble with the /ML option.
+
+  The correct names are
+
+    @code
+    @data
+    @fardata
+    @fardata?
+    @curseg
+
+  Turbo Assembler User's Guide
+  ----------------------------
+
+  For your convenience, many of the examples are provided on the dis-
+  tribution diskettes. Consult the files listed at the bottom of the
+  README file for their names and the page on which the example appears.
+
+  Page
+
+  33 - In the last sentence of the first paragraph, change AX
+       to CX.
+
+  42 - The example at the bottom of the page should be
+
+       10000
+       + 201
+       -----
+       10201
+
+  47 - In Footnote 2, remove the text in parentheses.
+
+  50 - The table in the manual does not include the 80287 and
+       80387 instructions. The following table describes them.
+
+       Instruction   Processor        Instruction   Processor
+       ------------------------------------------------------
+       FSETPM         287-387         FCOS             387
+       FPREM1         387             FPREMI           387
+       FSIN           387             FSINCOS          387
+       FUCOM          387             FUCOMP           387
+       FUCOMPP        387
+
+
+  61 - The first sentence of the second paragraph on the
+       page should read: "If you want to assemble multiple files,
+       you can separate their names with the plus sign(+):"
+
+       Remove the first example following the paragraph.
+
+  63 - The syntax description for the /B command-line
+       option should read, "/B."
+
+  74 - The table in the /W command-line option is missing
+       several items; add the following options:
+
+         RES - Reserved word warning
+         TPI - Turbo Pascal illegal warning
+         PQK - Assuming constant for [const] warning
+         ALN - Segment alignment
+
+  75 - At the top of the page, the first sentence should
+       read, "By default, Turbo Assembler first starts assembling
+       your file with all warnings enabled except the inefficient
+       code-generation (ICG) and the write-to-memory in
+       protected-mode (PRO) warnings.
+
+  78 - The first paragraph should say...
+
+       ...Assembler, it will look for a file called TASM.CFG in
+       your current directory. If running on DOS 3.X or later, it
+       will also look in the directory that Turbo Assembler was
+       loaded from. If Turbo Assembler finds the file ....
+
+  85 - On the second line of the page, change "Table 4.2 on page 169"
+       to "Table 2.1 page 47."
+
+  97 - The following example instructions will only work
+       correctly while in Ideal mode:
+
+       mov al, [100+8]
+          and
+       mov al, [108]
+
+       The equivalent instructions in MASM mode follow:
+
+       mov al, ds:[100+8]
+          and
+       mov al, ds:[108]
+
+ 135 - In the first paragraph of the section titled "Named
+       Memory Locations," the last sentence should read, "The
+       LABEL directive is another handy way to name a memory
+       location, without allocating any storage."
+
+ 142 - The sentence at the end of the fourth paragraph should
+       read: "It also matters when you're converting between data
+       sizes and when you're executing conditional jumps."
+
+ 146 - In the second paragraph, "first-in" should be "last-in."
+
+ 179 - From the first sentence of the fourth paragraph, delete
+       this text: "and considerably less flexible than register
+       passing."
+
+ 188 - In the second sentence of the last paragraph on the page,
+       change "table" to "label."
+
+ 212 - Add the following types to the table of EXTRN types in the
+       middle of the page:
+
+       DATAPTR           A near or far data pointer depending on
+                         the current memory model.
+
+       UNKNOWN           An unknown type.
+
+       <Structure Name>  The name of a user-defined STRUC type.
+
+ 220 - Delete the second paragraph on the page: "You'll notice
+       .... fields that overflow."
+
+ 227 - Delete the first paragraph on this page: "You should ....
+       symbol table."
+
+ 230 - In the last line of the second paragraph, change the word
+       'enabled' to 'disabled.'
+
+ 232 - The last sentence of the first complete paragraph should
+       read, "Normally, fields that overflow are not truncated
+       (%NOTRUNC)."
+
+ 241 - Add the following to the list of conditional error
+       directives at the bottom of the page:
+
+       .ERRE, .ERRNZ, .ERRDIFI, .ERRIDNI
+
+ 283,285,287,288,290,298,302,310 - Change the case of -s and -b
+       to -S and -B, respectively.
+
+ 290 - The second line of the last paragraph should read, "80387
+       processors, inline assembly that supports the 80286,
+       80287, 80386, and 80387."
+
+ 304 - The comment in the middle of the page should be
+
+       ; ?debug L 15
+
+ 319 - The last line of the third paragraph should be "FILE2.ASM,
+       rather than in the FARDATA segment."
+
+ 328 - The last sentence of the first paragraph should read,
+       "Another convenience is that the labels defined with ARG
+       are limited in scope to the procedure they're used in when
+       you declare them with the local label prefix (see LOCALS
+       in the Reference manual), so you need never worry about
+       .... "
+
+ 446 - The second sentence of the first paragraph should read,
+       "For example, in the following code, when TestStruc is
+       created, the first byte of field A is initialized to 1 and
+       the first byte of field B is initialized to 2, while the
+       second byte of each field is initialized to 20h (a
+       space)."
+
+ 453 - The word "bytes" in the comments for the example code
+       should be "bits."
+
+ 455 - The second statement "jnz LoopTop" in the example code
+       should be "jnz ShortLoopTop."
+
+ 473 - The statement "mov ax, [InitValue]" should be moved after
+       the statement "mov es, ax."
+
+ 519 - The constant value 800000000h should have one less zero in
+       it: 80000000h.
+
+ 522 - The constant value 100000000h should have one less zero in
+       it: 10000000h.
+
+ 531 - The first line of the second paragraph should read, "FCOS
+       calculates the cosine of the ST(0) register; FSIN
+       calculates the sine."
+
+ 543 - The last sentence of the second paragraph should read,
+       "The directive works the same in both modes with one
+       exception: SYMTYPE will not return a value for an
+       undefined identifier. Otherwise, this operator returns the
+       types of various symbols."
+
+ 553 - The last two sentences of the first paragraph, the modes
+       Ideal and MASM are reversed. It should read, "In Ideal
+       mode, the PUBLIC .... In MASM mode, because ....".
+
+ 580 - The second entry in the index for T should read
+
+       TASM.CFG files 78
+
+
+  Turbo Assembler Reference Guide
+  -------------------------------
+
+  Page
+
+   6 - The first paragraph on the page should read, "The
+       following rule applies to predefined symbols starting with
+       an at-sign(@): The first letter of each word that makes up
+       part of a symbol name is an uppercase letter, except for
+       segment-name aliases; the rest of the word is lowercase.
+       As an example,
+
+         @FileName
+         @WordSize
+         @curseg
+         @fardata
+
+       Change the predefined symbol entry @Code to @code and the
+       example should read:
+
+         mov  ax,@code
+         mov  dx,ax
+         ASSUME ds:@code
+
+   8 - Change the predefined symbol entry @Data to @data and the
+       example should read:
+
+         mov  ax,@data
+         mov  ds,ax
+         ASSUME ds:@data
+
+   9 - In the first sentence of the Remarks section for
+       @DataSize, @DataSize is set to 0 for the tiny model also.
+
+       The example for ??Date should be:
+         ASMDATE db ??Date
+
+  10 - Change the predefined symbol entry @FarData to @fardata and the
+       example should read:
+
+         mov  ax,@fardata
+         mov  ds,ax
+         ASSUME ds:@fardata
+
+       Change the predefined symbol entry @FarData? to @fardata? and the
+       example should read:
+
+         mov  ax,@fardata?
+         mov  ds,ax
+         ASSUME ds:@fardata?
+
+  15 - In Table 2.2, add the operator SYMTYPE at the end.
+
+  16 - Add the following sentence to the Remarks section for the
+       * operator: "The * operator can also be used between a
+       register and a constant, to support 386 addressing modes.
+
+  24 - The example for DWORD should be
+
+         call dword fptr
+
+  27 - The example for HIGH should be
+
+         ; MASM and Ideal modes
+         Magic  equ  1234h
+                mov  cl, HIGH Magic
+                Ideal
+         ; Ideal mode only
+         Big    DD   12345678h
+                mov  ax, [word HIGH Big] ; loads 1234h into AX
+
+  30 - The example for LOW should be
+
+         ; MASM and Ideal modes
+         Magic  equ  1234h
+                mov  bl, LOW Magic
+                Ideal
+         ; Ideal mode only
+         Big    DD   12345678h
+                mov  ax, [word LOW Big] ; loads 5678h into AX
+
+  31 - The example for MASK should be
+
+         stat record a:3,b:4,c:5
+         newstat stat <0,2,1>
+
+         mov al, newstat
+         and al, MASK b
+         mov al, MASK stat
+
+  33 - The example for NEAR should be
+
+         Ideal
+    proc farp far
+    ; body of procedure
+         endp farp
+
+    ; still in same segment
+         push cs
+         call NEAR farp
+
+  35 - The example for PROC should be
+
+         .model large
+         .code
+         Ideal
+    call proc Test1
+
+         proc Test1
+
+  35 - Add DATAPTR to the list of data types for the PTR
+       operator. Also, in MASM mode, the expression to the right
+       of PTR can be anything that evaluates to a constant.
+
+  39 - The last paragraph in the Remarks section for the SIZE
+       operator should read, "In Ideal mode, SIZE returns the
+       byte count within a DUP. To get the byte count of the DUP,
+       use LENGTH."
+
+       In the first line of the Remarks section for SMALL, change
+       LARGE to SMALL.
+
+  40 - Delete MASM from the Mode description of SYMTYPE.
+
+  41 - Add DATAPTR to the list of data types for the THIS
+       operator.
+
+  42 - The example for the .TYPE operator should be
+
+         if (.type ABC) and 3
+           assume ds:seg abc
+           mov  ax, seg abc
+           mov  ds, ax
+         endif
+
+  49 - In the % operator, add these lines to the end of the
+       second paragraph: "The evaluated expression will be
+       represented as a numerical string in the CURRENT RADIX.
+       Also, a text macro name can be specified after the %,
+       causing a full substitution of the text macro body for the
+       macro argument."
+
+  53 - Add the % directive, which is a one-line macro that uses
+       all current text macros as possible arguments.
+
+  59 - Add the following sentence to the end of the Remarks
+       section for the ALIGN directive: "ALIGN generates a
+       warning if the segment alignment is not strict enough."
+
+  61 - Add DATAPTR to the list of valid data types in the third
+       paragraph.
+
+  62 - The example for the ARG directive should be
+
+         fp   PROC FAR
+              ARG SRC:WORD,DEST:WORD = ARGLEN
+              push bp
+              mov  bp,sp
+              mov  di,DEST
+              mov  si,SRC
+         ;<Procedure body>
+              pop  bp
+              ret  ARGLEN
+          fp  ENDP
+
+  67 - The Syntax description for COMMENT should be
+
+         COMMENT delimiter [text]
+         [text]
+         delimiter
+
+  69 - Delete the second paragraph of the Remarks section for the
+       .CREF directive; .CREF is not used by default.
+
+       The third paragraph should read, "Turbo Assembler includes
+       cross-reference information in the listing file as well as
+       in a separate .XRF file."
+
+  71 - The first sentence in the Remarks section for the %CTLS
+       directive should say that listing-control directives are
+       normally *not* listed.
+
+  75 - Add DATAPTR to list of valid data types in the first
+       paragraph on the page.
+
+       Change the number in the first bulleted item from
+       4,294,967,295 to 2,147,483,647.
+
+  76 - Add DATAPTR to list of valid data types in the second
+       paragraph of the Remarks section for DF.
+
+  77 - The DISPLAY directive is available in both MASM and Ideal
+       modes.
+
+       You may use the substitute operator inside a string passed
+       to the DISPLAY directive. For example,
+
+         MAKE_DATA macro VALUE
+                   display "Initializing a byte to: &VALUE&"
+                   db VALUE
+                   endm
+
+  79 - DP defines a far 48-bit pointer, not 32.
+
+       In DQ, change the numeric range in the first bulleted item
+       from -2^64+1 to 2^64-1.
+
+  81 - Add DATAPTR to list of valid data types in the first
+       paragraph on the page. Also, the number in the first
+       bulleted item on the page should be 32,767, not 65,536.
+
+  87 - The EQU directive is available in both MASM and Ideal
+       modes.
+
+  97 - Add the following sentence to the end of the Remarks
+       section for the EVEN directive: "A warning is generated
+       for the EVEN directive if alignment is not strict enough."
+
+  98 - Add to the Remarks section of EVENDATA: "It even-aligns by
+       merely advancing the location counter without emitting
+       data, which is useful for uninitialized segments. Also, it
+       gives a warning if the segment alignment isn't strict
+       enough."
+
+  99 - Add DATAPTR to the list of types in the Remarks section of
+       EXTRN. Also each argument of EXTRN accepts the same syntax
+       as an argument of ARG or LOCAL.
+
+ 103 - Add DATAPTR to the list of types in the Remarks section of
+       the GLOBAL directive. Also add to the Remarks section that
+       each argument of GLOBAL accepts the same syntax as an
+       argument of EXTRN, ARG, or LOCAL.
+
+ 117 - Add DATAPTR to list of valid data types in the Remarks
+       section for LABEL.
+
+ 120 - In the middle of the page, delete the first part of the
+       paragraph that begins, "If you have enabled MASM51..", and
+       leave "You can use this alternative syntax for each
+       localdef."
+
+ 121 - Add DATAPTR to the list of valid data types in the first
+       paragraph on this page.
+
+ 124 - Remove the third bulleted item in the Remarks section for
+       the MASM51 directive. The last bulleted item should read,
+       "Extended model PROCs are all PUBLIC with a leading
+       underscore if the language is C."
+
+ 125 - In the fourth line of the fourth paragraph, add the word
+       "DATA" between "and" and "segments." Add this phrase to
+       the last sentence in the same paragraph: "...if you want
+       16-bit segments."
+
+ 128 - Add the last three lines in the example for %NEWPAGE to
+       MULTERRS.
+
+ 129 - Delete the last three lines in the example for %NEWPAGE.
+
+ 137 - You may use the substitute operator inside a string passed
+       to the %OUT directive. For example,
+
+         MAKE_DATA macro  VALUE
+                   %out Initializing a byte to: &VALUE&
+                   db VALUE
+                   endm
+
+ 145 - The example for PROC should be
+
+          READLINE proc near
+            ; Body of procedure
+          READLINE endp
+
+          call READLINE
+
+ 146 - In the Remarks section for %PUSHLCTL, change %WCL to %INCL
+       and change %NOWCL to %NOINCL.
+
+ 156 - The example for the STRUC directive should be
+
+         Ideal
+         model small
+         dataseg
+         struc B
+           B1  DD  0
+           B2  DB  ?
+         ends
+
+         struc A
+           A1  DW  ?
+           A2  DD  ?
+           binst  B  <>
+           struc
+             D  DB  "XYZ"
+             E  DQ  1.0
+           ends
+         ends
+
+         ainst  A  <>
+         cinst  A  ?
+         dinst  A
+
+         codeseg
+           mov  al, [ainst.binst.b2]
+           mov  al, [ainst.d]
+           mov  ax, [word cinst.binst.b1]
+         end
+
+ 160 - Remove the last paragraph in the Remarks section for
+       %TRUNC. Note that %NOTRUNC is the default mode when Turbo
+       Assembler starts assembling a file.
+
+ 163 - In the table of 80386 32-bit registers, remove EDS and
+       EES.
+
+ 164 - Add the following to the list of warning identifiers:
+
+       RES - Reserved word warning
+       TPI - Turbo Pascal illegal warning
+       PQK - Assuming constant for [const] warning
+       ALN - Segment alignment
+
+ 171 - In the section for mexpr9, add the following:
+
+       o mexpr10
+
+ 173 - In the section for expr, capitalize the reserved word
+       "symtype."
+
+ 191 - Disregard the 'NOTE.' in the middle of the page.
+
+ 216 - Remove the second to last paragraph on the page, "By
+       default ..."
+
